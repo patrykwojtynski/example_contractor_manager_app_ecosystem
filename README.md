@@ -6,12 +6,13 @@ Apples' Silicon support included :)
 ###### Build
 `make build`
 
-###### Ash
-Contractor app: `make contractor_app_ash`
-Manager app: `make manager_app_ash`
+###### Bash
+Contractor app: `make contractor_app_bash`
+Manager app: `make manager_app_bash`
 
 ###### Test
 `make test`
 
 ###### Start all components
-`make up`
+First: `make dev_environment`
+Then: `make up`

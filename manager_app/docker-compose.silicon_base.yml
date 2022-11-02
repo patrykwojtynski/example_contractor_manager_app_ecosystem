@@ -6,3 +6,5 @@ services:
       context: .
       args:
         RUBY_IMAGE_TYPE: arm64v8/ruby
+  manager_postgres:
+    image: arm64v8/postgres:15.0-alpine

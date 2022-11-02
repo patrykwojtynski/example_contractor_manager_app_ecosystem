@@ -3,3 +3,5 @@ version: '3'
 services:
   manager_app:
     build: .
+  manager_postgres:
+    image: postgres:15.0-alpine

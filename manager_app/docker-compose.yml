@@ -3,9 +3,26 @@ version: '3'
 services:
   manager_app:
     image: pilot/manager_app
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails server --port 3000 --binding '0.0.0.0'"
+    ports:
+      - 3000:3000
     volumes:
       - .:/app
-      - gem_cache:/gems
+      - manager_app_gem_cache:/gems
+    depends_on:
+      - manager_postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST=manager_postgres
+      - POSTGRES_PORT=5432
+
+  manager_postgres:
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - manager_postgres:/var/lib/postgresql/data
 
 volumes:
-  gem_cache:
+  manager_app_gem_cache:
+  manager_postgres:

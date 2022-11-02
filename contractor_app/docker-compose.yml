@@ -3,9 +3,26 @@ version: '3'
 services:
   contractor_app:
     image: pilot/contractor_app
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails server --port 3000 --binding '0.0.0.0'"
+    ports:
+      - 3333:3000
     volumes:
       - .:/app
-      - gem_cache:/gems
+      - contractor_app_gem_cache:/gems
+    depends_on:
+      - contractor_postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST=contractor_postgres
+      - POSTGRES_PORT=5432
+
+  contractor_postgres:
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - contractor_postgres:/var/lib/postgresql/data
 
 volumes:
-  gem_cache:
+  contractor_app_gem_cache:
+  contractor_postgres:

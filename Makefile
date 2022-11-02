@@ -7,18 +7,20 @@ else
 BASE_DOCKERFILE := docker-compose.base.yml
 endif
 
-CONTRACTOR_APP_FILES := -f contractor_app/docker-compose.yml -f contractor_app/$(BASE_DOCKERFILE)
-MANAGER_APP_FILES := -f manager_app/docker-compose.yml -f manager_app/$(BASE_DOCKERFILE)
-COMPOSE := docker compose $(CONTRACTOR_APP_FILES) $(MANAGER_APP_FILES)
+CONTRACTOR_APP_COMPOSE := docker compose -f contractor_app/docker-compose.yml -f contractor_app/$(BASE_DOCKERFILE)
+MANAGER_APP_COMPOSE := docker compose -f manager_app/docker-compose.yml -f manager_app/$(BASE_DOCKERFILE)
 
 build:
-	$(COMPOSE) build
+	$(CONTRACTOR_APP_COMPOSE) build & $(MANAGER_APP_COMPOSE) build
 
-contractor_app_ash:
-	docker compose $(CONTRACTOR_APP_FILES) run --rm contractor_app /bin/ash
+contractor_app_bash:
+	$(CONTRACTOR_APP_COMPOSE) run --rm contractor_app /bin/bash
 
-manager_app_ash:
-	docker compose $(MANAGER_APP_FILES) run --rm manager_app /bin/ash
+manager_app_bash:
+	$(MANAGER_APP_COMPOSE) run --rm manager_app /bin/bash
+
+dev_environment:
+	$(CONTRACTOR_APP_COMPOSE) run --rm contractor_app /bin/sh -c "rails db:create" & $(MANAGER_APP_COMPOSE) run --rm manager_app /bin/sh -c "rails db:create"
 
 up:
-	$(COMPOSE) up
+	$(CONTRACTOR_APP_COMPOSE) up & $(MANAGER_APP_COMPOSE) up
