@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  contractor_app:
+    build:
+      context: .
+      args:
+        RUBY_IMAGE_TYPE: arm64v8/ruby

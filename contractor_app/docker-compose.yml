@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  contractor_app:
+    image: pilot/contractor_app
+    volumes:
+      - .:/app
+      - gem_cache:/gems
+
+volumes:
+  gem_cache:

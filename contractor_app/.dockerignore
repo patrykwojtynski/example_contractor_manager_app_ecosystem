@@ -1,0 +1,18 @@
+# Trashes
+.DS_Store
+
+# GIT
+.git
+.gitignore
+
+# Rubymine
+.idea
+
+# misc
+README.md
+.editorconfig
+
+# Docker files
+Dockerfile
+docker-*
+.dockerignore

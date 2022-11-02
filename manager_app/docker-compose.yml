@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  manager_app:
+    image: pilot/manager_app
+    volumes:
+      - .:/app
+      - gem_cache:/gems
+
+volumes:
+  gem_cache:
