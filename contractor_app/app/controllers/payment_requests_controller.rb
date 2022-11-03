@@ -8,9 +8,9 @@ class PaymentRequestsController < ApplicationController
   end
 
   def create
-    @payment_request = PaymentRequest.new(payment_request_params)
+    @payment_request = PaymentRequestsManager::Creator.call(payment_request_params)
 
-    if @payment_request.save
+    if @payment_request.errors.empty?
       redirect_to payment_requests_url, notice: "Payment request was successfully created."
     else
       render :new, status: :unprocessable_entity

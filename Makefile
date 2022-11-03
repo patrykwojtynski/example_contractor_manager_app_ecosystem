@@ -7,6 +7,7 @@ else
 BASE_DOCKERFILE := docker-compose.base.yml
 endif
 
+SHARED_COMPOSE := docker compose -f docker-compose.yml
 CONTRACTOR_APP_COMPOSE := docker compose -f contractor_app/docker-compose.yml -f contractor_app/$(BASE_DOCKERFILE)
 MANAGER_APP_COMPOSE := docker compose -f manager_app/docker-compose.yml -f manager_app/$(BASE_DOCKERFILE)
 
@@ -23,4 +24,4 @@ dev_environment:
 	$(CONTRACTOR_APP_COMPOSE) run --rm contractor_app /bin/sh -c "rails db:create" & $(MANAGER_APP_COMPOSE) run --rm manager_app /bin/sh -c "rails db:create"
 
 up:
-	$(CONTRACTOR_APP_COMPOSE) up & $(MANAGER_APP_COMPOSE) up
+	$(SHARED_COMPOSE) up & $(CONTRACTOR_APP_COMPOSE) up & $(MANAGER_APP_COMPOSE) up

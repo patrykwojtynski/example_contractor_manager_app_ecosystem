@@ -13,7 +13,9 @@ gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "jbuilder"
 gem "bootsnap", require: false
+
 gem 'money-rails', '~>1.12'
+gem "karafka", "~> 2.0"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -26,3 +28,8 @@ group :development do
   gem "web-console"
 end
 
+group :test do
+  gem 'rspec-rails', '~> 6.0.0'
+  gem 'karafka-testing'
+  gem 'rails-controller-testing'
+end

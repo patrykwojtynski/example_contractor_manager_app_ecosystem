@@ -1,5 +1,11 @@
 version: '3'
 
+networks:
+  homework_kafka-net:
+    external: true
+  contractor-app:
+    driver: bridge
+
 services:
   contractor_app:
     image: pilot/contractor_app
@@ -16,10 +22,17 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_HOST=contractor_postgres
       - POSTGRES_PORT=5432
+      - KAFKA_HOST=kafka:9092
+      - KAFKA_CLIENT_ID=contractor_app
+    networks:
+      - homework_kafka-net
+      - contractor-app
 
   contractor_postgres:
     environment:
       POSTGRES_PASSWORD: password
+    networks:
+      - contractor-app
     volumes:
       - contractor_postgres:/var/lib/postgresql/data
 
