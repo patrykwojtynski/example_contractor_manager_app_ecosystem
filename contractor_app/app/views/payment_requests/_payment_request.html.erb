@@ -1,0 +1,35 @@
+<div id="<%= dom_id payment_request %>">
+  <p class="my-5 flex">
+    <strong class="block font-medium mb-1 mr-1">ID:</strong>
+    <%= payment_request.id %>
+  </p>
+
+  <p class="my-5 flex">
+    <strong class="block font-medium mb-1 mr-1">Amount:</strong>
+    <%= payment_request.amount %> <%= payment_request.amount_currency %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1 mr-1">Description:</strong>
+    <%= payment_request.description %>
+  </p>
+
+  <p class="my-5 flex">
+    <strong class="block font-medium mb-1 mr-1">Status:</strong>
+    <%= payment_request.status %>
+  </p>
+
+  <p class="my-5 flex">
+    <strong class="block font-medium mb-1 mr-1">Decision timestamp:</strong>
+    <%= payment_request.decision_timestamp %>
+  </p>
+
+  <p class="my-5 flex">
+    <strong class="block font-medium mb-1 mr-1">Created At:</strong>
+    <%= payment_request.created_at %>
+  </p>
+
+  <% if action_name != "show" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
