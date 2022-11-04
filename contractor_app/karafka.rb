@@ -20,8 +20,8 @@ class KarafkaApp < Karafka::App
     # Uncomment this if you use Karafka with ActiveJob
     # You ned to define the topic per each queue name you use
     # active_job_topic :default
-    # topic :example do
-    #   consumer ExampleConsumer
-    # end
+    topic :payment_request_statuses do
+      consumer PaymentRequestStatusesConsumer
+    end
   end
 end

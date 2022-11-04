@@ -5,5 +5,9 @@ FactoryBot.define do
     amount_currency { 'PLN' }
     description { 'Desc' }
     status { 'pending' }
+
+    trait :rejected do
+      status { 'rejected' }
+    end
   end
 end

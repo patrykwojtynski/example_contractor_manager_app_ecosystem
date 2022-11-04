@@ -42,7 +42,7 @@ services:
       - POSTGRES_HOST=manager_postgres
       - POSTGRES_PORT=5432
       - KAFKA_HOST=kafka:9092
-      - KAFKA_CLIENT_ID=manager_app
+      - KAFKA_CLIENT_ID=manager_app_karafka
     networks:
       - homework_kafka-net
       - manager-app

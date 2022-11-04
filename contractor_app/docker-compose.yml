@@ -28,6 +28,25 @@ services:
       - homework_kafka-net
       - contractor-app
 
+  contractor_karafka:
+    image: pilot/contractor_app
+    command: /bin/sh -c "bundle exec karafka server"
+    volumes:
+      - .:/app
+      - contractor_app_gem_cache:/gems
+    depends_on:
+      - contractor_postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST=contractor_postgres
+      - POSTGRES_PORT=5432
+      - KAFKA_HOST=kafka:9092
+      - KAFKA_CLIENT_ID=contractor_app_karafka
+    networks:
+      - homework_kafka-net
+      - contractor-app
+
   contractor_postgres:
     environment:
       POSTGRES_PASSWORD: password
