@@ -9,10 +9,7 @@ describe PaymentRequestsManager::Creator, type: :service do
     end
 
     context 'when already exist' do
-      before do
-        # TODO: use factory bot
-        PaymentRequest.create(remote_id: 1)
-      end
+      before { create(:payment_request, remote_id: 1) }
 
       it 'does not create same request' do
         expect { creator_call }.to_not change(PaymentRequest, :count)
