@@ -20,3 +20,8 @@ Then: `make up`
 Visit
 - `http://localhost:3333/` for Contractor App
 - `http://localhost:3000/` for Manager App
+
+
+# TODO:
+- container names
+- split Make commands

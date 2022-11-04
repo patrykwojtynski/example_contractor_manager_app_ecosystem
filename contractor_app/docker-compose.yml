@@ -1,7 +1,7 @@
 version: '3'
 
 networks:
-  homework_kafka-net:
+  ecmac-kafka-net:
     external: true
   contractor-app:
     driver: bridge
@@ -25,7 +25,7 @@ services:
       - KAFKA_HOST=kafka:9092
       - KAFKA_CLIENT_ID=contractor_app
     networks:
-      - homework_kafka-net
+      - ecmac-kafka-net
       - contractor-app
 
   contractor_karafka:
@@ -44,7 +44,7 @@ services:
       - KAFKA_HOST=kafka:9092
       - KAFKA_CLIENT_ID=contractor_app_karafka
     networks:
-      - homework_kafka-net
+      - ecmac-kafka-net
       - contractor-app
 
   contractor_postgres:

@@ -21,7 +21,10 @@ manager_app_bash:
 	$(MANAGER_APP_COMPOSE) run --rm manager_app /bin/bash
 
 dev_environment:
-	$(CONTRACTOR_APP_COMPOSE) run --rm contractor_app /bin/sh -c "rails db:create" & $(MANAGER_APP_COMPOSE) run --rm manager_app /bin/sh -c "rails db:create"
+	$(CONTRACTOR_APP_COMPOSE) run --rm contractor_app /bin/sh -c "rails db:create"; $(MANAGER_APP_COMPOSE) run --rm manager_app /bin/sh -c "rails db:create"
+
+test:
+	$(CONTRACTOR_APP_COMPOSE) run --rm contractor_app /bin/sh -c "rspec"; $(MANAGER_APP_COMPOSE) run --rm manager_app /bin/sh -c "rspec"
 
 up:
 	$(SHARED_COMPOSE) up & $(CONTRACTOR_APP_COMPOSE) up & $(MANAGER_APP_COMPOSE) up
