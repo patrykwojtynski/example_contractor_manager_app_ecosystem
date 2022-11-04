@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe PaymentRequestsManager::Notifier, type: :service do
   describe '.call' do
-    # IDEA: good place to use fabricators
-    let(:payment_request) { PaymentRequest.create(amount_cents: 111, amount_currency: 'PLN', description: 'Desc') }
+    let(:payment_request) { create(:payment_request) }
     subject(:notifier_call) { described_class.call(payment_request) }
 
     before { notifier_call }

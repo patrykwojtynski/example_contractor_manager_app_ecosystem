@@ -7,7 +7,9 @@ module PaymentRequestsManager
 
     def call
       return false unless @payment_request.status_pending?
-      update
+      update.tap do |updated|
+        StatusNotifier.call(@payment_request) if updated
+      end
     end
 
     private

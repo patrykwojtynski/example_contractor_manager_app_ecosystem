@@ -4,7 +4,7 @@ describe PaymentRequestsManager::Creator, type: :service do
   describe '.call' do
     let(:params) { double }
     subject(:creator_call) { described_class.call(params) }
-    let(:payment_request) { PaymentRequest.new }
+    let(:payment_request) { build(:payment_request) }
 
     before do
       allow(PaymentRequestsManager::Notifier).to receive(:call)

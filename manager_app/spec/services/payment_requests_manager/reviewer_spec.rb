@@ -16,11 +16,21 @@ describe PaymentRequestsManager::Reviewer, type: :service do
       expect(reviewer_call).to be_truthy
     end
 
+    it 'notifies about status change' do
+      expect(PaymentRequestsManager::StatusNotifier).to receive(:call).with(payment_request)
+      reviewer_call
+    end
+
     context 'when decision was already made' do
       let(:payment_request) { create(:payment_request, :accepted) }
 
       it 'returns false' do
         expect(reviewer_call).to be_falsey
+      end
+
+      it 'doesnt notify about status change' do
+        expect(PaymentRequestsManager::StatusNotifier).to_not receive(:call)
+        reviewer_call
       end
     end
   end
