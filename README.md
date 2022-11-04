@@ -1,4 +1,7 @@
-# Pilot.co - Ruby Developer Homework
+# Example Contractor-Manager App Ecosystem
+Two apps: Contractor App and Manager App communicate via Kafka.
+
+Contractor App allows to create Payment Request and Manager App can accept or reject it's submission.
 
 ### Run with docker
 Apples' Silicon support included :)
