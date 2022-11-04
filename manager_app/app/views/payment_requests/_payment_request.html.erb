@@ -1,0 +1,45 @@
+<div id="<%= dom_id payment_request %>">
+  <div class="flex justify-between">
+    <div>
+      <p class="my-5 flex">
+        <strong class="block font-medium mb-1 mr-1">ID:</strong>
+        <%= payment_request.id %>
+      </p>
+
+      <p class="my-5 flex">
+        <strong class="block font-medium mb-1 mr-1">Remote Id:</strong>
+        <%= payment_request.remote_id %>
+      </p>
+
+      <p class="my-5">
+        <strong class="block font-medium mb-1 mr-1">Payload:</strong>
+      <pre><%= payment_request.payload %></pre>
+      </p>
+
+      <p class="my-5 flex">
+        <strong class="block font-medium mb-1 mr-1">Status:</strong>
+        <%= payment_request.status %>
+      </p>
+
+      <p class="my-5 flex">
+        <strong class="block font-medium mb-1 mr-1">Decision timestamp:</strong>
+        <%= payment_request.decided_at %>
+      </p>
+
+      <p class="my-5 flex">
+        <strong class="block font-medium mb-1 mr-1">Created At:</strong>
+        <%= payment_request.created_at %>
+      </p>
+    </div>
+    <div>
+      <% if payment_request.status_pending? %>
+        <%= link_to 'Accept', accept_payment_request_path(payment_request), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+        <%= link_to 'Reject', reject_payment_request_path(payment_request), class: "rounded-lg py-3 px-5 bg-red-600 text-white block font-medium" %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if action_name != "show" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

@@ -1,5 +1,11 @@
 version: '3'
 
+networks:
+  homework_kafka-net:
+    external: true
+  manager-app:
+    driver: bridge
+
 services:
   manager_app:
     image: pilot/manager_app
@@ -16,10 +22,36 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_HOST=manager_postgres
       - POSTGRES_PORT=5432
+      - KAFKA_HOST=kafka:9092
+      - KAFKA_CLIENT_ID=manager_app
+    networks:
+      - homework_kafka-net
+      - manager-app
+
+  manager_karafka:
+    image: pilot/manager_app
+    command: /bin/sh -c "bundle exec karafka server"
+    volumes:
+      - .:/app
+      - manager_app_gem_cache:/gems
+    depends_on:
+      - manager_postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST=manager_postgres
+      - POSTGRES_PORT=5432
+      - KAFKA_HOST=kafka:9092
+      - KAFKA_CLIENT_ID=manager_app
+    networks:
+      - homework_kafka-net
+      - manager-app
 
   manager_postgres:
     environment:
       POSTGRES_PASSWORD: password
+    networks:
+      - manager-app
     volumes:
       - manager_postgres:/var/lib/postgresql/data
 

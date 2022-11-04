@@ -10,18 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_03_002431) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_03_204837) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "payment_requests", force: :cascade do |t|
-    t.integer "amount_cents", default: 0, null: false
-    t.string "amount_currency", default: "USD", null: false
-    t.text "description"
+    t.integer "remote_id", null: false
+    t.jsonb "payload"
     t.integer "status", default: 0, null: false
     t.datetime "decided_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["remote_id"], name: "index_payment_requests_on_remote_id", unique: true
   end
-
 end

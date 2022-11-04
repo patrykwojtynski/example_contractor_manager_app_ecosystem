@@ -19,9 +19,10 @@ class KarafkaApp < Karafka::App
   routes.draw do
     # Uncomment this if you use Karafka with ActiveJob
     # You ned to define the topic per each queue name you use
-    # active_job_topic :default
-    # topic :example do
-    #   consumer ExampleConsumer
-    # end
+    active_job_topic :default
+
+    topic :payment_requests do
+      consumer PaymentRequestsConsumer
+    end
   end
 end
