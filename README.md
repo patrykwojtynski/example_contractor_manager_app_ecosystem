@@ -28,3 +28,4 @@ Visit
 # TODO:
 - container names
 - split Make commands
+- EVENTS in kafka queues (ex: `ACCEPTED` | `REJECTED`)
