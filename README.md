@@ -1,4 +1,4 @@
-# Example Contractor-Manager App Ecosystem
+# Example Contractor-Manager App Ecosystem - ECMAE
 Two apps: Contractor App and Manager App communicate via Kafka.
 
 Contractor App allows to create Payment Request and Manager App can accept or reject it's submission.
@@ -27,5 +27,4 @@ Visit
 
 # TODO:
 - container names
-- split Make commands
 - EVENTS in kafka queues (ex: `ACCEPTED` | `REJECTED`)

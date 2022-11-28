@@ -1,21 +1,21 @@
 version: '3'
 
 networks:
-  ecmac-kafka-net:
-    name: ecmac-kafka-net
+  ecmae-kafka-net:
+    name: ecmae-kafka-net
     driver: bridge
 
 services:
   zookeeper:
     image: 'bitnami/zookeeper:latest'
     networks:
-      - ecmac-kafka-net
+      - ecmae-kafka-net
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
   kafka:
     image: 'bitnami/kafka:latest'
     networks:
-      - ecmac-kafka-net
+      - ecmae-kafka-net
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
